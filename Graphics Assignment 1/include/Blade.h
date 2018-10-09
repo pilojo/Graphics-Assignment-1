@@ -4,7 +4,7 @@
 constexpr unsigned short BLADE_WIDTH = 50;
 constexpr unsigned short BLADE_HEIGHT = 250;
 constexpr unsigned short PIN_OFFSET = 20;
-
+constexpr unsigned short SCREEN_WIDTH = 1024;
 
 using namespace sf;
 class Blade {
@@ -15,10 +15,11 @@ private:
 	bool active;
 public:
 	Blade();
+	Blade(float);
 	void render(RenderWindow*);
 	void update(void);
-	void disable(void);
+	inline void disable(void);
 	void changeDirection(void);
 	void changeSpeed(Vector2f);
-	void enable(void);
+	inline void enable(void);
 };
