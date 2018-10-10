@@ -22,5 +22,4 @@ public:
 	void changeDirection(void);
 	void changeSpeed(Vector2f);
 	inline void enable(void);
-
 };

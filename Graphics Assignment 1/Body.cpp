@@ -20,6 +20,7 @@ Body::Body(Vector2f position) {
 	base.setOrigin(baseWidth / 2, 0);
 	base.setPosition(Vector2f(position.x, position.y+towerHeight));
 	base.setFillColor(Color::Blue);
+	initPin();
 }
 
 void Body::render(RenderWindow *window) {
@@ -29,10 +30,28 @@ void Body::render(RenderWindow *window) {
 	for (int i = 0; i < 4; i++) {
 		blades[i].render(window);
 	}
+	window->draw(pin);
 }
 
 void Body::update() {
 	for (int i = 0; i < 4; i++) {
 		blades[i].update();
 	}
+	pin.rotate(1);
+}
+
+void Body::initPin() {
+	pin.setPointCount(8);
+	pin.setFillColor(Color::White);
+	pin.setPoint(0, Vector2f(8, 0));
+	pin.setPoint(1, Vector2f(13, 7));
+	pin.setPoint(2, Vector2f(20, 8));
+	pin.setPoint(3, Vector2f(13, 13));
+	pin.setPoint(4, Vector2f(12, 20));
+	pin.setPoint(5, Vector2f(7, 13));
+	pin.setPoint(6, Vector2f(0, 12));
+	pin.setPoint(7, Vector2f(7, 7));
+	pin.setOrigin(10, 10);
+	pin.setPosition(position);
+	pin.setRotation(13);
 }

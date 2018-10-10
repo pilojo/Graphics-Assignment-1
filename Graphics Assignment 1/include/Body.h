@@ -16,10 +16,12 @@ private:
 	CircleShape roundTop;
 	Blade blades[4] = {};
 	Vector2f position;
+	ConvexShape pin;
 	int x, y;
 public:
     
 	Body(Vector2f);
 	void render(RenderWindow*);
 	void update();
+	void initPin();
 };
