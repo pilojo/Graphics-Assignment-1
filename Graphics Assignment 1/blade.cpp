@@ -1,21 +1,10 @@
 #include "Blade.h"
 
-Blade::Blade(void) {
+Blade::Blade(int rotation, Vector2f position){
 	blade.setFillColor(Color::Red);
 	blade.setSize(Vector2f(BLADE_WIDTH, BLADE_HEIGHT));
 	blade.setOrigin(Vector2f(0, BLADE_HEIGHT+PIN_OFFSET));
-	blade.setPosition(Vector2f(1024/2,780/3));
-	blade.setScale(Vector2f(0.5, 0.5));
-	speed = 1.0f;
-	direction = 1;
-	active = true;
-}
-
-Blade::Blade(float rotation){
-	blade.setFillColor(Color::Red);
-	blade.setSize(Vector2f(BLADE_WIDTH, BLADE_HEIGHT));
-	blade.setOrigin(Vector2f(0, BLADE_HEIGHT+PIN_OFFSET));
-	blade.setPosition(Vector2f(1024/2-BLADE_WIDTH/2,780/3));
+	blade.setPosition(position);
 	blade.setScale(Vector2f(0.5, 0.5));
 	speed = 1.0f;
 	direction = 1;

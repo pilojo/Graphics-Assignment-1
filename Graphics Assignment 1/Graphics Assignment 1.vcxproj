@@ -70,7 +70,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Users\jp972\Documents\SFML-2.5.0\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\jp972\Documents\Graphics\Graphics Assignment 1\Graphics Assignment 1\include;C:\Users\jp972\Documents\SFML-2.5.0\include;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Users\jp972\Documents\SFML-2.5.0\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -82,7 +82,7 @@
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>sfml-system-s.lib;sfml-window-s.lib;sfml-graphics-s.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>sfml-system.lib;sfml-window.lib;sfml-graphics.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -123,12 +123,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="blade.cpp" />
+    <ClCompile Include="Body.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Blade.h" />
-    <ClInclude Include="Body.h" />
-    <ClInclude Include="Cloud.h" />
+    <ClInclude Include="include\Blade.h" />
+    <ClInclude Include="include\Body.h" />
+    <ClInclude Include="include\Cloud.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

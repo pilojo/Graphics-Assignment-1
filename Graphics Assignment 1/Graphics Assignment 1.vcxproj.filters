@@ -21,15 +21,18 @@
     <ClCompile Include="blade.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Body.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Blade.h">
+    <ClInclude Include="include\Blade.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Body.h">
+    <ClInclude Include="include\Body.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Cloud.h">
+    <ClInclude Include="include\Cloud.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

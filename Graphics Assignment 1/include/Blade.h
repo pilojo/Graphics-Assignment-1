@@ -14,12 +14,13 @@ private:
 	int direction;
 	bool active;
 public:
-	Blade();
-	Blade(float);
+	Blade() = default;
+	Blade(int, Vector2f);
 	void render(RenderWindow*);
 	void update(void);
 	inline void disable(void);
 	void changeDirection(void);
 	void changeSpeed(Vector2f);
 	inline void enable(void);
+
 };
