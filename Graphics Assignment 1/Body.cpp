@@ -1,26 +1,29 @@
-#include "Body.h"
 #include <iostream>
-Body::Body(Vector2f position) {
+#include "Blade.h"
+#include "Body.h"
+
+Body::Body(Vector2f position, Texture *texture) {
 	this->position = position;
 	for (int i = 0; i < 360; i += 90) {
-		blades[i/90] = Blade(i, position);
+		blades[i/90] = Blade(i, position, texture);
 	}
 	
 	roundTop.setRadius(50.0f);
 	roundTop.setOrigin(Vector2f(50, 50));
 	roundTop.setPosition(position);
-	roundTop.setFillColor(Color::Blue);
+	roundTop.setFillColor(Color(180, 0, 0));
 
 	tower.setSize(Vector2f(towerWidth, towerHeight));
 	tower.setOrigin(towerWidth / 2, 0);
 	tower.setPosition(position);
-	tower.setFillColor(Color::Blue);
+	tower.setFillColor(Color(180, 0, 0));
 
 	base.setSize(Vector2f(baseWidth, baseHeight));
 	base.setOrigin(baseWidth / 2, 0);
 	base.setPosition(Vector2f(position.x, position.y+towerHeight));
-	base.setFillColor(Color::Blue);
+	base.setFillColor(Color(180, 0, 0));
 	initPin();
+	activePin = true;
 }
 
 void Body::render(RenderWindow *window) {
@@ -33,16 +36,18 @@ void Body::render(RenderWindow *window) {
 	window->draw(pin);
 }
 
-void Body::update() {
+void Body::update(void) {
 	for (int i = 0; i < 4; i++) {
 		blades[i].update();
 	}
-	pin.rotate(1);
+	if (activePin) {
+		pin.rotate(1);
+	}
 }
 
-void Body::initPin() {
+void Body::initPin(void) {
 	pin.setPointCount(8);
-	pin.setFillColor(Color::White);
+	pin.setFillColor(Color::Black);
 	pin.setPoint(0, Vector2f(8, 0));
 	pin.setPoint(1, Vector2f(13, 7));
 	pin.setPoint(2, Vector2f(20, 8));
@@ -54,4 +59,18 @@ void Body::initPin() {
 	pin.setOrigin(10, 10);
 	pin.setPosition(position);
 	pin.setRotation(13);
+}
+
+void Body::enable(void) {
+	for (int i = 0; i < 4; i++) {
+		blades[i].enable();
+	}
+	activePin = true;
+}
+
+void Body::disable(void) {
+	for (int i = 0; i < 4; i++) {
+		blades[i].disable();
+	}
+	activePin = false;
 }

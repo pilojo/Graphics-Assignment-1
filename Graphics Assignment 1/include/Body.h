@@ -14,14 +14,17 @@ private:
 	RectangleShape base;
 	RectangleShape tower;
 	CircleShape roundTop;
-	Blade blades[4] = {};
+	Blade blades[4];
 	Vector2f position;
 	ConvexShape pin;
 	int x, y;
+	bool activePin;
 public:
-    
-	Body(Vector2f);
+	Body() = default;
+	Body(Vector2f, Texture*);
 	void render(RenderWindow*);
-	void update();
-	void initPin();
+	void update(void);
+	void initPin(void);
+	void enable(void);
+	void disable(void);
 };

@@ -9,17 +9,17 @@ constexpr unsigned short SCREEN_WIDTH = 1024;
 using namespace sf;
 class Blade {
 private:
-	RectangleShape blade;
+	Sprite blade;
 	float speed;
 	int direction;
 	bool active;
 public:
 	Blade() = default;
-	Blade(int, Vector2f);
+	Blade(int, Vector2f, Texture*);
 	void render(RenderWindow*);
 	void update(void);
-	inline void disable(void);
+	void disable(void);
 	void changeDirection(void);
 	void changeSpeed(Vector2f);
-	inline void enable(void);
+	void enable(void);
 };

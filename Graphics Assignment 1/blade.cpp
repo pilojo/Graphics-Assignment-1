@@ -1,8 +1,6 @@
 #include "Blade.h"
-
-Blade::Blade(int rotation, Vector2f position){
-	blade.setFillColor(Color::Red);
-	blade.setSize(Vector2f(BLADE_WIDTH, BLADE_HEIGHT));
+Blade::Blade(int rotation, Vector2f position, Texture *texture){
+	
 	blade.setOrigin(Vector2f(0, BLADE_HEIGHT+PIN_OFFSET));
 	blade.setPosition(position);
 	blade.setScale(Vector2f(0.5, 0.5));
@@ -10,6 +8,8 @@ Blade::Blade(int rotation, Vector2f position){
 	direction = 1;
 	active = true;
 	blade.setRotation(rotation);
+	blade.setTexture(*texture);
+	blade.setTextureRect(IntRect(0, 0, BLADE_WIDTH, BLADE_HEIGHT));
 }
 
 void Blade::render(RenderWindow *window) {
@@ -22,11 +22,11 @@ void Blade::update(void) {
 	}
 }
 
-inline void Blade::disable(void) {
+void Blade::disable(void) {
 	active = false;
 }
 
-inline void Blade::enable(void) {
+void Blade::enable(void) {
 	active = true;
 }
 
