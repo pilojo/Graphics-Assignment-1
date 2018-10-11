@@ -2,26 +2,30 @@
 #include "Blade.h"
 #include "Body.h"
 
-Body::Body(Vector2f position, Texture *texture) {
-	this->position = position;
-	for (int i = 0; i < 360; i += 90) {
-		blades[i/90] = Blade(i, position, texture);
-	}
-	
+Body::Body(){
+	speed = 1;
 	roundTop.setRadius(50.0f);
 	roundTop.setOrigin(Vector2f(50, 50));
-	roundTop.setPosition(position);
+	
 	roundTop.setFillColor(Color(180, 0, 0));
 
 	tower.setSize(Vector2f(towerWidth, towerHeight));
 	tower.setOrigin(towerWidth / 2, 0);
-	tower.setPosition(position);
 	tower.setFillColor(Color(180, 0, 0));
 
 	base.setSize(Vector2f(baseWidth, baseHeight));
 	base.setOrigin(baseWidth / 2, 0);
-	base.setPosition(Vector2f(position.x, position.y+towerHeight));
 	base.setFillColor(Color(180, 0, 0));
+}
+
+Body::Body(Vector2f position, Texture *texture) : Body(){
+	this->position = position;
+	for (int i = 0; i < 360; i += 90) {
+		blades[i/90] = Blade(i, position, texture);
+	}
+	roundTop.setPosition(position);
+	tower.setPosition(position);
+	base.setPosition(Vector2f(position.x, position.y+towerHeight));
 	initPin();
 	activePin = true;
 }
@@ -31,17 +35,15 @@ void Body::render(RenderWindow *window) {
 	window->draw(roundTop);
 	window->draw(tower);
 	for (int i = 0; i < 4; i++) {
-		blades[i].render(window);
+		blades[i].render(window, pin.getTransform());
 	}
+	
 	window->draw(pin);
 }
 
 void Body::update(void) {
-	for (int i = 0; i < 4; i++) {
-		blades[i].update();
-	}
 	if (activePin) {
-		pin.rotate(1);
+		pin.rotate(speed);
 	}
 }
 
@@ -58,19 +60,17 @@ void Body::initPin(void) {
 	pin.setPoint(7, Vector2f(7, 7));
 	pin.setOrigin(10, 10);
 	pin.setPosition(position);
-	pin.setRotation(13);
 }
 
 void Body::enable(void) {
-	for (int i = 0; i < 4; i++) {
-		blades[i].enable();
-	}
 	activePin = true;
 }
 
 void Body::disable(void) {
-	for (int i = 0; i < 4; i++) {
-		blades[i].disable();
-	}
 	activePin = false;
+}
+
+void Body::changeSpeed(Event::MouseMoveEvent e){
+	float change = -(e.y-780/2)/780.0f*2;
+	speed = 3*change;
 }

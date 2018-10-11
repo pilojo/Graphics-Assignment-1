@@ -17,14 +17,16 @@ private:
 	Blade blades[4];
 	Vector2f position;
 	ConvexShape pin;
+	float speed;
 	int x, y;
 	bool activePin;
 public:
-	Body() = default;
+	Body();
 	Body(Vector2f, Texture*);
 	void render(RenderWindow*);
 	void update(void);
 	void initPin(void);
 	void enable(void);
 	void disable(void);
+	void changeSpeed(Event::MouseMoveEvent e);
 };

@@ -7,13 +7,10 @@
 using namespace sf;
 
 
-
-
-
 int main() {
 	RenderWindow window(VideoMode(1024, 780), "Windmills");
 	Event e;
-
+	
 	Texture texture;
 	if (!texture.loadFromFile("Resources/windmill.png")) {
 		std::cerr << "Could not load texture!" << std::endl;
@@ -22,7 +19,7 @@ int main() {
 	Body body(Vector2f(1024 / 2, 780 / 3),&texture);
 	Body body2(Vector2f(1024 - 200, 780 / 3), &texture);
 	Body body3(Vector2f(200, 780 / 3), &texture);
-	
+	bool buttonPressed = false;
 	window.setFramerateLimit(60);
 	while (window.isOpen()) {
 		while (window.pollEvent(e)) {
@@ -53,9 +50,19 @@ int main() {
 					body3.enable();
 					break;
 				}
-			case Event::MouseMoved:
+				break;
+			case Event::MouseButtonPressed:
+				buttonPressed = true;
+				break;
+			case Event::MouseButtonReleased:
+				buttonPressed = false;
 				break;
 			}
+		}
+		if(buttonPressed){
+			body.changeSpeed(e.mouseMove);
+			body2.changeSpeed(e.mouseMove);
+			body3.changeSpeed(e.mouseMove);
 		}
 		window.clear();
 		body.render(&window);
